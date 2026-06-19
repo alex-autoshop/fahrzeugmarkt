@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-canvas text-ink font-sans antialiased;
+    letter-spacing: -0.01em;
+  }
+  h1, h2, h3 {
+    letter-spacing: -0.03em;
+    font-weight: 600;
+  }
+  ::selection {
+    background: rgba(0, 113, 227, 0.18);
+  }
+  /* schmale, apple-artige scrollbar */
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-thumb { background: #c7c7cc; border-radius: 99px; border: 3px solid #fbfbfd; }
+  ::-webkit-scrollbar-thumb:hover { background: #aeaeb2; }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-[1180px] px-5 sm:px-8;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full font-medium
+           transition-all duration-200 active:scale-[0.97] select-none;
+  }
+  .btn-accent {
+    @apply btn bg-accent text-white hover:bg-accent-hover px-6 h-12 text-[15px]
+           shadow-[0_4px_16px_rgba(0,113,227,0.32)];
+  }
+  .btn-dark {
+    @apply btn bg-ink text-white hover:bg-black px-6 h-12 text-[15px];
+  }
+  .btn-ghost {
+    @apply btn bg-black/[0.04] text-ink hover:bg-black/[0.07] px-5 h-11 text-[15px];
+  }
+  .btn-pill {
+    @apply btn border border-line bg-white/70 text-ink hover:border-ink/30 px-4 h-10 text-sm;
+  }
+
+  .card {
+    @apply rounded-2xl bg-white border border-black/[0.06] shadow-soft;
+  }
+
+  .input {
+    @apply w-full rounded-xl border border-line bg-white px-4 h-12 text-[15px]
+           outline-none transition-all placeholder:text-sub/70
+           focus:border-accent focus:ring-4 focus:ring-accent/15;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full bg-black/[0.04] px-3 py-1
+           text-[13px] font-medium text-sub;
+  }
+
+  .glass-nav {
+    background: rgba(251, 251, 253, 0.72);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+  }
+
+  /* großer Display-Text wie auf apple.com */
+  .display {
+    font-weight: 600;
+    letter-spacing: -0.045em;
+    line-height: 1.05;
+  }
+}
