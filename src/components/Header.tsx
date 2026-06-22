@@ -7,10 +7,19 @@ export function Header() {
   return (
     <header className="glass-nav sticky top-0 z-40 border-b border-black/[0.06]">
       <div className="container-x flex h-14 items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 font-semibold tracking-tight text-[19px]">
-          <span className="grid h-7 w-7 place-items-center rounded-lg bg-ink text-white text-sm font-bold">K</span>
-          karo
-          <span className="ml-1 hidden rounded-full bg-black/[0.05] px-2 py-0.5 text-[11px] font-medium text-sub sm:inline">
+        <Link to="/" className="flex min-w-0 items-center gap-2 sm:gap-2.5">
+          {/* Alex-Autoshop-Logo (weiß) auf dunklem Chip — sichtbar auf hellem Header */}
+          <span className="flex shrink-0 items-center rounded-xl bg-ink px-2 py-1.5">
+            <img
+              src={`${import.meta.env.BASE_URL}images/logo-cropped.png`}
+              alt="Alex Autoshop"
+              className="h-[18px] w-auto sm:h-5"
+            />
+          </span>
+          <span className="truncate text-[15px] font-semibold tracking-tight sm:text-[16px]">
+            Fahrzeug<span className="text-sub">markt</span>
+          </span>
+          <span className="ml-1 hidden rounded-full bg-black/[0.05] px-2 py-0.5 text-[11px] font-medium text-sub md:inline">
             Wuppertal · NRW
           </span>
         </Link>

@@ -13,7 +13,7 @@ export function CarImage({
   const [failed, setFailed] = useState(false);
   const showImg = src && !failed;
   return (
-    <div className={`relative overflow-hidden bg-gradient-to-br from-[#23232a] to-[#15151a] ${className}`}>
+    <div className={`relative overflow-hidden bg-gradient-to-br from-[#e9eef5] to-[#d7dde6] ${className}`}>
       {showImg ? (
         <img
           src={src}
