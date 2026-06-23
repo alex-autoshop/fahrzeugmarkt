@@ -1,7 +1,9 @@
 export type Fuel = "Benzin" | "Diesel" | "Elektro" | "Hybrid" | "LPG";
 export type Gearbox = "Schaltgetriebe" | "Automatik";
+export type Status = "aktiv" | "verkauft" | "entwurf";
 
 export interface Car {
+  status?: Status; // default "aktiv"
   id: string;
   make: string;
   model: string;

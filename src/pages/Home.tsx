@@ -17,6 +17,7 @@ export default function Home() {
 
   const filtered = useMemo(() => {
     let list = cars.filter((c) => {
+      if (c.status === "verkauft") return false; // verkaufte Autos nicht im öffentlichen Markt
       const hay = `${c.make} ${c.model} ${c.variant ?? ""} ${c.city} ${c.color ?? ""}`.toLowerCase();
       if (q && !hay.includes(q.toLowerCase())) return false;
       if (fuel !== "Alle" && c.fuel !== fuel) return false;

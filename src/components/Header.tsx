@@ -25,17 +25,23 @@ export function Header() {
         </Link>
 
         <nav className="flex items-center gap-1 sm:gap-2">
-          <NavLink
-            to="/"
-            end
-            className={({ isActive }) =>
-              `hidden rounded-full px-4 py-2 text-[14px] font-medium transition-colors sm:block ${
-                isActive ? "text-ink" : "text-sub hover:text-ink"
-              }`
-            }
-          >
-            Entdecken
-          </NavLink>
+          {[
+            { to: "/", label: "Entdecken", end: true },
+            { to: "/haendler", label: "Für Händler", end: false },
+          ].map((l) => (
+            <NavLink
+              key={l.to}
+              to={l.to}
+              end={l.end}
+              className={({ isActive }) =>
+                `hidden rounded-full px-3.5 py-2 text-[14px] font-medium transition-colors sm:block ${
+                  isActive ? "text-ink" : "text-sub hover:text-ink"
+                }`
+              }
+            >
+              {l.label}
+            </NavLink>
+          ))}
           {!onSell && (
             <Link to="/inserieren" className="btn-dark h-10 px-4 text-[14px]">
               <Sparkles className="h-4 w-4" />

@@ -4,6 +4,8 @@ import { Header } from "@/components/Header";
 import Home from "@/pages/Home";
 import CarDetail from "@/pages/CarDetail";
 import Sell from "@/pages/Sell";
+import Dealer from "@/pages/Dealer";
+import Import from "@/pages/Import";
 
 function ScrollTop() {
   const { pathname } = useLocation();
@@ -20,6 +22,8 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/auto/:id" element={<CarDetail />} />
         <Route path="/inserieren" element={<Sell />} />
+        <Route path="/haendler" element={<Dealer />} />
+        <Route path="/import" element={<Import />} />
         <Route path="*" element={<Home />} />
       </Routes>
     </>
