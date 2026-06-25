@@ -1,5 +1,6 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Sparkles } from "lucide-react";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 export function Header() {
   const { pathname } = useLocation();
@@ -42,6 +43,7 @@ export function Header() {
               {l.label}
             </NavLink>
           ))}
+          <LanguageSwitcher />
           {!onSell && (
             <Link to="/inserieren" className="btn-dark h-10 px-4 text-[14px]">
               <Sparkles className="h-4 w-4" />
