@@ -32,23 +32,29 @@ function currentLang(): string {
   return parts[2] || "de";
 }
 
-function setLang(code: string) {
-  const host = location.hostname;
-  const expire = "expires=Thu, 01 Jan 1970 00:00:00 GMT";
-  document.cookie = `googtrans=;${expire};path=/`;
-  document.cookie = `googtrans=;${expire};path=/;domain=.${host}`;
-  if (code !== "de") {
-    document.cookie = `googtrans=/de/${code};path=/`;
-    document.cookie = `googtrans=/de/${code};path=/;domain=.${host}`;
+// Sprache über Googles eigenes Auswahl-Element setzen — wechselt zuverlässig
+// zwischen ALLEN Sprachen, kein Reload, kein Cookie-Domain-Problem.
+function applyLang(code: string, attempt = 0) {
+  const combo = document.querySelector<HTMLSelectElement>(".goog-te-combo");
+  if (combo) {
+    combo.value = code === "de" ? "" : code; // "" = Original wiederherstellen
+    combo.dispatchEvent(new Event("change"));
+    return;
   }
-  location.reload();
+  if (attempt < 40) window.setTimeout(() => applyLang(code, attempt + 1), 120);
 }
 
 export function LanguageSwitcher() {
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState<string>(() => currentLang());
   const ref = useRef<HTMLDivElement>(null);
-  const active = currentLang();
   const activeLang = LANGS.find((l) => l.code === active) ?? LANGS[0];
+
+  const pick = (code: string) => {
+    setActive(code);
+    setOpen(false);
+    applyLang(code);
+  };
 
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
@@ -78,7 +84,7 @@ export function LanguageSwitcher() {
           {LANGS.map((l) => (
             <button
               key={l.code}
-              onClick={() => setLang(l.code)}
+              onClick={() => pick(l.code)}
               className="flex w-full items-center gap-2.5 px-3 py-2 text-left text-[14px] hover:bg-black/[0.04]"
             >
               <span className="text-base">{l.flag}</span>
